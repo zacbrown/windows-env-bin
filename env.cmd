@@ -14,10 +14,14 @@ if not exist "%ALLUSERSPROFILE%\chocolatey\bin" (
     )
 )
 
+if defined VS140COMNTOOLS (
+    call "%VS140COMNTOOLS%\vsvars32.bat"
+)
+
 :: path setup
 set PATH=%PATH%;%SystemDrive%\dev\bin
 
-:: keyboard shortcuts
+:: app shortcuts
 doskey st="C:\Program Files\Sublime Text 3\sublime_text.exe" $*
 
 :: path shortcuts
@@ -25,5 +29,7 @@ doskey dev=cd %SystemDrive%\dev
 doskey ..=cd ..
 doskey ...=cd ..\..\
 doskey ....=cd ..\..\..\
+doskey touch=copy NUL $*
+doskey ls=dir
 
 cd %SystemDrive%\dev
