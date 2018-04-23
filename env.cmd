@@ -6,20 +6,21 @@ if not exist "%ALLUSERSPROFILE%\chocolatey\bin" (
 ) else (
     if not exist "%PROGRAMFILES%\Mozilla Firefox" (
         choco install -y firefox
-        choco install -y SublimeText3
         choco install -y ag
         choco install -y git
-
-        git config --global core.editor "'c:/program files/sublime text 3/subl.exe' -w"
     )
 )
 
-if defined VS140COMNTOOLS (
-    call "%VS140COMNTOOLS%\vsvars32.bat"
-)
+::if defined VS140COMNTOOLS (
+::    call "%VS140COMNTOOLS%\vsvars32.bat"
+::)
 
 :: path setup
 set PATH=%PATH%;%SystemDrive%\dev\bin
+
+:: osquery poop
+set SKIP_TESTS=1
+set RELWITHDEBINFO=1
 
 :: app shortcuts
 doskey st="C:\Program Files\Sublime Text 3\sublime_text.exe" $*
